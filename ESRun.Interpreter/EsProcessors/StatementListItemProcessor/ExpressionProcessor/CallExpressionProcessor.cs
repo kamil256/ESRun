@@ -1,5 +1,6 @@
 using Esprima.Ast;
 using ESRun.Interpreter.EsProcessors.Abstract;
+using ESRun.Interpreter.EsScope;
 using ESRun.Interpreter.EsTypes.Abstract;
 using ESRun.Interpreter.EsTypes.Function;
 using ESRun.Interpreter.EsTypes.Undefined;
@@ -29,16 +30,6 @@ public class CallExpressionProcessor : INodeProcessor<CallExpression, EsValue>
 
         var arguments = node.Arguments.Select(arg => _expressionProcessor.Value.Process(arg, scope)).ToArray();
 
-        if (calleeFunction.Body is not null)
-        {
-            return _blockStatementProcessor.Value.Process(calleeFunction.Body, calleeFunction.Scope);
-        }
-
-        if (calleeFunction.InternalFunctionName is not null)
-        {
-            FunctionValue.InternalFunctions[calleeFunction.InternalFunctionName](arguments);
-        }
-
-        return UndefinedValue.Singleton;
+        return calleeFunction.Call(arguments);
     }
 }

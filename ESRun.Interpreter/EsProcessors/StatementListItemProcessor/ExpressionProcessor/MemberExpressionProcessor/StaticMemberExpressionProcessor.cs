@@ -1,6 +1,6 @@
 using Esprima.Ast;
-using Esprima.Utils;
 using ESRun.Interpreter.EsProcessors.Abstract;
+using ESRun.Interpreter.EsScope;
 using ESRun.Interpreter.EsTypes.Abstract;
 using ESRun.Interpreter.EsTypes.Object;
 

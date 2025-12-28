@@ -1,5 +1,6 @@
 using Esprima.Ast;
 using ESRun.Interpreter.EsProcessors.Abstract;
+using ESRun.Interpreter.EsScope;
 using ESRun.Interpreter.EsTypes.Abstract;
 using ESRun.Interpreter.EsTypes.Object;
 
@@ -17,7 +18,7 @@ public class ObjectExpressionProcessor : INodeProcessor<ObjectExpression, EsValu
 
     public EsValue Process(ObjectExpression node, Scope scope)
     {
-        var propertyDescriptors = new Dictionary<string, SimplePropertyDescriptor>();
+        var objectValue = new ObjectValue();
 
         foreach (var property in node.Properties)
         {
@@ -28,9 +29,9 @@ public class ObjectExpressionProcessor : INodeProcessor<ObjectExpression, EsValu
 
             var (identifier, propertyDescriptor) = _propertyProcessor.Value.Process(propertyNode, scope);
 
-            propertyDescriptors.Add(identifier, propertyDescriptor);
+            objectValue.Properties.Add(identifier, propertyDescriptor);
         }
 
-        return new ObjectValue(propertyDescriptors);
+        return objectValue;
     }
 }

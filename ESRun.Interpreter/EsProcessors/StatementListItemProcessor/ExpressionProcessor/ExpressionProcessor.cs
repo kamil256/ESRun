@@ -1,5 +1,6 @@
 using Esprima.Ast;
 using ESRun.Interpreter.EsProcessors.Abstract;
+using ESRun.Interpreter.EsScope;
 using ESRun.Interpreter.EsTypes.Abstract;
 using ESRun.Interpreter.EsTypes.Function;
 using ESRun.Interpreter.EsTypes.Undefined;
@@ -43,7 +44,7 @@ public class ExpressionProcessor : INodeProcessor<Expression, EsValue>
             case Identifier identifierNode:
                 var identifier = identifierNode.Name;
 
-                return scope.GetVariable(identifier, true)?.Value ?? UndefinedValue.Singleton;
+                return scope.GetVariable(identifier, true)?.Value ?? UndefinedValue.Instance;
             case Literal literalNode:
                 return _literalProcessor.Value.Process(literalNode, scope);
             case ObjectExpression objectExpressionNode:

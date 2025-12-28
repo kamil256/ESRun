@@ -1,5 +1,6 @@
 using Esprima.Ast;
 using ESRun.Interpreter.EsProcessors.Abstract;
+using ESRun.Interpreter.EsScope;
 using ESRun.Interpreter.EsTypes.Abstract;
 using ESRun.Interpreter.EsTypes.Undefined;
 
@@ -23,6 +24,6 @@ public class VariableDeclarationProcessor : INodeProcessor<VariableDeclaration, 
             scope.SetVariable(identifier, node.Kind, value);
         }
 
-        return UndefinedValue.Singleton;
+        return UndefinedValue.Instance;
     }
 }

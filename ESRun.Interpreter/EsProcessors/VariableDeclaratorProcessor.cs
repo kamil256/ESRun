@@ -1,5 +1,6 @@
 using Esprima.Ast;
 using ESRun.Interpreter.EsProcessors.Abstract;
+using ESRun.Interpreter.EsScope;
 using ESRun.Interpreter.EsTypes.Abstract;
 using ESRun.Interpreter.EsTypes.Undefined;
 
@@ -25,7 +26,7 @@ public class VariableDeclaratorProcessor : INodeProcessor<VariableDeclarator, Ke
 
         var value = node.Init != null
             ? _expressionProcessor.Value.Process(node.Init, scope)
-            : UndefinedValue.Singleton;
+            : UndefinedValue.Instance;
 
         return new KeyValuePair<string, EsValue>(identifier, value);
     }

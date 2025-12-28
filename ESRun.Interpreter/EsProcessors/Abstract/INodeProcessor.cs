@@ -1,4 +1,5 @@
 using Esprima.Ast;
+using ESRun.Interpreter.EsScope;
 
 namespace ESRun.Interpreter.EsProcessors.Abstract;
 

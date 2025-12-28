@@ -1,5 +1,6 @@
 using Esprima.Ast;
 using ESRun.Interpreter.EsProcessors.Abstract;
+using ESRun.Interpreter.EsScope;
 using ESRun.Interpreter.EsTypes.Abstract;
 using ESRun.Interpreter.EsTypes.Undefined;
 
@@ -25,6 +26,6 @@ public class ExpressionStatementProcessor : INodeProcessor<ExpressionStatement, 
                 throw new NotImplementedException($"Node type '{expressionStatement.Type}' is not supported yet.");
         }
 
-        return UndefinedValue.Singleton;
+        return UndefinedValue.Instance;
     }
 }
