@@ -3,15 +3,16 @@ using ESRun.Interpreter.EsProcessors.Abstract;
 using ESRun.Interpreter.EsScope;
 using ESRun.Interpreter.EsTypes.Abstract;
 using ESRun.Interpreter.EsTypes.Object;
+using ESRun.Interpreter.EsTypes.String;
 
 namespace ESRun.Interpreter.EsProcessors;
 
 public class ObjectExpressionProcessor : INodeProcessor<ObjectExpression, EsValue>
 {
-    protected readonly Lazy<INodeProcessor<Property, KeyValuePair<string, SimplePropertyDescriptor>>> _propertyProcessor;
+    protected readonly Lazy<INodeProcessor<Property, KeyValuePair<StringValue, PropertyDescriptor>>> _propertyProcessor;
 
     public ObjectExpressionProcessor(
-        Lazy<INodeProcessor<Property, KeyValuePair<string, SimplePropertyDescriptor>>> propertyProcessor)
+        Lazy<INodeProcessor<Property, KeyValuePair<StringValue, PropertyDescriptor>>> propertyProcessor)
     {
         _propertyProcessor = propertyProcessor;
     }

@@ -4,6 +4,7 @@ using ESRun.Interpreter.EsProcessors.Abstract;
 using ESRun.Interpreter.EsTypes.Abstract;
 using ESRun.Interpreter.EsTypes.Function;
 using ESRun.Interpreter.EsTypes.Object;
+using ESRun.Interpreter.EsTypes.String;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ESRun.Interpreter;
@@ -23,7 +24,7 @@ public static class ServiceRegistration
         .AddSingleton<INodeProcessor<Literal, EsValue>, LiteralProcessor>()
         .AddSingleton<INodeProcessor<MemberExpression, EsValue>, MemberExpressionProcessor>()
         .AddSingleton<INodeProcessor<ObjectExpression, EsValue>, ObjectExpressionProcessor>()
-        .AddSingleton<INodeProcessor<Property, KeyValuePair<string, SimplePropertyDescriptor>>, PropertyProcessor>()
+        .AddSingleton<INodeProcessor<Property, KeyValuePair<StringValue, PropertyDescriptor>>, PropertyProcessor>()
         .AddSingleton<INodeProcessor<Script, EsValue>, ScriptProcessor>()
         .AddSingleton<INodeProcessor<Statement, EsValue>, StatementProcessor>()
         .AddSingleton<INodeProcessor<StaticMemberExpression, EsValue>, StaticMemberExpressionProcessor>()
@@ -39,7 +40,7 @@ public static class ServiceRegistration
         .AddSingleton(sp => new Lazy<INodeProcessor<Literal, EsValue>>(() => sp.GetRequiredService<INodeProcessor<Literal, EsValue>>()))
         .AddSingleton(sp => new Lazy<INodeProcessor<MemberExpression, EsValue>>(() => sp.GetRequiredService<INodeProcessor<MemberExpression, EsValue>>()))
         .AddSingleton(sp => new Lazy<INodeProcessor<ObjectExpression, EsValue>>(() => sp.GetRequiredService<INodeProcessor<ObjectExpression, EsValue>>()))
-        .AddSingleton(sp => new Lazy<INodeProcessor<Property, KeyValuePair<string, SimplePropertyDescriptor>>>(() => sp.GetRequiredService<INodeProcessor<Property, KeyValuePair<string, SimplePropertyDescriptor>>>()))
+        .AddSingleton(sp => new Lazy<INodeProcessor<Property, KeyValuePair<StringValue, PropertyDescriptor>>>(() => sp.GetRequiredService<INodeProcessor<Property, KeyValuePair<StringValue, PropertyDescriptor>>>()))
         .AddSingleton(sp => new Lazy<INodeProcessor<Script, EsValue>>(() => sp.GetRequiredService<INodeProcessor<Script, EsValue>>()))
         .AddSingleton(sp => new Lazy<INodeProcessor<Statement, EsValue>>(() => sp.GetRequiredService<INodeProcessor<Statement, EsValue>>()))
         .AddSingleton(sp => new Lazy<INodeProcessor<StaticMemberExpression, EsValue>>(() => sp.GetRequiredService<INodeProcessor<StaticMemberExpression, EsValue>>()))

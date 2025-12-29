@@ -2,6 +2,7 @@ using ESRun.Interpreter.EsScope;
 using ESRun.Interpreter.EsTypes.Abstract;
 using ESRun.Interpreter.EsTypes.Function;
 using ESRun.Interpreter.EsTypes.Object;
+using ESRun.Interpreter.EsTypes.String;
 using ESRun.Interpreter.EsTypes.Undefined;
 using ESRun.Interpreter.Logging;
 
@@ -20,7 +21,7 @@ public class ConsoleObject : ObjectValue
 
     private ConsoleObject()
     {
-        Properties.Add("log", new SimplePropertyDescriptor(new FunctionValue(Log, new Scope())));
+        Properties.Add(new StringValue("log"), new DataPropertyDescriptor(new FunctionValue(Log, new Scope())));
     }
 
     public static ConsoleObject Instance => _instance ??= new ConsoleObject();

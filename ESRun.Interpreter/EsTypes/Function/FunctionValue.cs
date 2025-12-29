@@ -24,14 +24,19 @@ public class FunctionValue : ObjectValue
 
         foreach (var property in Properties)
         {
-            if (property.Value.Value is ObjectValue nestedObject)
+            var descriptor = property.Value;
+
+            if (descriptor is DataPropertyDescriptor dataPropertyDescriptor)
             {
-                result += $"{indentation}{property.Key}: ";
-                result += nestedObject.ToString(nestingLevel + 1);
-            }
-            else
-            {
-                result += $"\r\n{indentation}{property.Key}: {property.Value.Value}";
+                if (dataPropertyDescriptor.Value is ObjectValue nestedObject)
+                {
+                    result += $"{indentation}{property.Key}: ";
+                    result += nestedObject.ToString(nestingLevel + 1);
+                }
+                else
+                {
+                    result += $"\r\n{indentation}{property.Key}: {dataPropertyDescriptor.Value}";
+                }
             }
         }
 

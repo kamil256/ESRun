@@ -3,6 +3,7 @@ using ESRun.Interpreter.EsProcessors.Abstract;
 using ESRun.Interpreter.EsScope;
 using ESRun.Interpreter.EsTypes.Abstract;
 using ESRun.Interpreter.EsTypes.Object;
+using ESRun.Interpreter.EsTypes.String;
 
 namespace ESRun.Interpreter.EsProcessors;
 
@@ -22,7 +23,7 @@ public class StaticMemberExpressionProcessor : INodeProcessor<StaticMemberExpres
             throw new NotImplementedException("Only identifier objects are supported in member expressions.");
         }
 
-        var propertyIdentifier = propertyIdentifierNode.Name;
+        var propertyIdentifier = new StringValue(propertyIdentifierNode.Name);
 
         switch (node.Object)
         {

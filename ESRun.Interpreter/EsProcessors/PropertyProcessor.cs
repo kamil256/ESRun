@@ -4,10 +4,11 @@ using ESRun.Interpreter.EsScope;
 using ESRun.Interpreter.EsTypes.Abstract;
 using ESRun.Interpreter.EsTypes.Function;
 using ESRun.Interpreter.EsTypes.Object;
+using ESRun.Interpreter.EsTypes.String;
 
 namespace ESRun.Interpreter.EsProcessors;
 
-public class PropertyProcessor : INodeProcessor<Property, KeyValuePair<string, SimplePropertyDescriptor>>
+public class PropertyProcessor : INodeProcessor<Property, KeyValuePair<StringValue, PropertyDescriptor>>
 {
     protected readonly Lazy<INodeProcessor<FunctionExpression, FunctionValue>> _functionExpressionProcessor;
     protected readonly Lazy<INodeProcessor<Literal, EsValue>> _literalProcessor;
@@ -22,17 +23,17 @@ public class PropertyProcessor : INodeProcessor<Property, KeyValuePair<string, S
         _functionExpressionProcessor = functionExpressionProcessor;
     }
 
-    public KeyValuePair<string, SimplePropertyDescriptor> Process(Property node, Scope scope)
+    public KeyValuePair<StringValue, PropertyDescriptor> Process(Property node, Scope scope)
     {
         if (node.Key is not Identifier identifierNode)
         {
             throw new NotImplementedException("Only identifier keys are supported in object expressions.");
         }
 
-        var identifier = identifierNode.Name;
+        var identifier = new StringValue(identifierNode.Name);
         var value = GetValue(node.Value, scope);
 
-        return new KeyValuePair<string, SimplePropertyDescriptor>(identifier, new SimplePropertyDescriptor(value));
+        return new KeyValuePair<StringValue, PropertyDescriptor>(identifier, new DataPropertyDescriptor(value));
     }
 
     private EsValue GetValue(Node node, Scope scope)

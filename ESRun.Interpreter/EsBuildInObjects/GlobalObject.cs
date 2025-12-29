@@ -1,4 +1,5 @@
 using ESRun.Interpreter.EsTypes.Object;
+using ESRun.Interpreter.EsTypes.String;
 
 namespace ESRun.Interpreter.EsBuildInObjects;
 
@@ -8,7 +9,7 @@ public class GlobalObject : ObjectValue
 
     private GlobalObject()
     {
-        Properties.Add("console", new SimplePropertyDescriptor(ConsoleObject.Instance));
+        Properties.Add(new StringValue("console"), new DataPropertyDescriptor(ConsoleObject.Instance));
     }
 
     public static GlobalObject Instance => _instance ??= new GlobalObject();

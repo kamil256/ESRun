@@ -1,17 +1,25 @@
 using ESRun.Interpreter.EsTypes.Abstract;
+using ESRun.Interpreter.EsTypes.String;
+using ESRun.Interpreter.EsTypes.Symbol;
 using ESRun.Interpreter.EsTypes.Undefined;
 
 namespace ESRun.Interpreter.EsTypes.Object;
 
 public class ObjectValue : EsValue
 {
-    public Dictionary<string, SimplePropertyDescriptor> Properties { get; set; } = new Dictionary<string, SimplePropertyDescriptor>();
+    public Dictionary<StringValue, PropertyDescriptor> Properties { get; set; } = new Dictionary<StringValue, PropertyDescriptor>();
+    public Dictionary<SymbolValue, PropertyDescriptor> SymbolProperties { get; set; } = new Dictionary<SymbolValue, PropertyDescriptor>();
 
-    public EsValue GetPropertyValue(string propertyName)
+    public EsValue GetPropertyValue(StringValue propertyName)
     {
-        if (Properties.TryGetValue(propertyName, out var propertyDescriptor))
+        var propertyKey = Properties.Keys.FirstOrDefault(k => k.ToString() == propertyName.ToString());
+
+        if (propertyKey != null)
         {
-            return propertyDescriptor.Value;
+            if (Properties[propertyKey] is DataPropertyDescriptor dataPropertyDescriptor)
+            {
+                return dataPropertyDescriptor.Value;
+            }
         }
 
         return UndefinedValue.Instance;
@@ -29,7 +37,12 @@ public class ObjectValue : EsValue
 
         foreach (var property in Properties)
         {
-            result += $"\r\n{indentation}{property.Key}: {property.Value.Value.ToString(nestingLevel + 1)}";
+            var descriptor = property.Value;
+
+            if (descriptor is DataPropertyDescriptor dataPropertyDescriptor)
+            {
+                result += $"\r\n{indentation}{property.Key.ToString(0)}: {dataPropertyDescriptor.Value.ToString(nestingLevel + 1)}";
+            }
         }
 
         return result;
