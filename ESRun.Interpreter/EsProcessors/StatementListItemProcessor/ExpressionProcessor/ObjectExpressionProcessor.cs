@@ -30,7 +30,7 @@ public class ObjectExpressionProcessor : INodeProcessor<ObjectExpression, EsValu
 
             var (identifier, propertyDescriptor) = _propertyProcessor.Value.Process(propertyNode, scope);
 
-            objectValue.Properties.Add(identifier, propertyDescriptor);
+            objectValue.DefineOwnProperty(identifier, propertyDescriptor);
         }
 
         return objectValue;

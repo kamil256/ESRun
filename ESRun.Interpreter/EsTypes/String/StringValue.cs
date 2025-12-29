@@ -30,6 +30,11 @@ public class StringValue : EsValue
         return ToString();
     }
 
+    public bool Equals(StringValue otherStringValue)
+    {
+        return _value == otherStringValue._value;
+    }
+
     public string GetSubstring(int inclusiveStartIndex, int exclusiveEndIndex)
     {
         return _value.Substring(inclusiveStartIndex, exclusiveEndIndex - inclusiveStartIndex);

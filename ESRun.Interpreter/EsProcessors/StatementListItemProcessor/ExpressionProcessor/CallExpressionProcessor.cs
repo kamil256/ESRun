@@ -3,7 +3,9 @@ using ESRun.Interpreter.EsProcessors.Abstract;
 using ESRun.Interpreter.EsScope;
 using ESRun.Interpreter.EsTypes.Abstract;
 using ESRun.Interpreter.EsTypes.Function;
+using ESRun.Interpreter.EsTypes.Null;
 using ESRun.Interpreter.EsTypes.Undefined;
+using ESRun.Interpreter.SpecificationTypes.CompletionRecord;
 
 namespace ESRun.Interpreter.EsProcessors;
 
@@ -30,6 +32,6 @@ public class CallExpressionProcessor : INodeProcessor<CallExpression, EsValue>
 
         var arguments = node.Arguments.Select(arg => _expressionProcessor.Value.Process(arg, scope)).ToArray();
 
-        return calleeFunction.Call(arguments);
+        return calleeFunction.Call(NullValue.Instance, arguments).Value;
     }
 }

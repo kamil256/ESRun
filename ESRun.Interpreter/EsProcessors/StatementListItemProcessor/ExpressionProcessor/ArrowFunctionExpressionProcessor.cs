@@ -24,7 +24,7 @@ public class ArrowFunctionExpressionProcessor : INodeProcessor<ArrowFunctionExpr
             throw new NotImplementedException("Only block statement bodies are supported in arrow functions.");
         }
 
-        var call = new Func<EsValue[], EsValue>((_arguments) => _blockStatementProcessor.Value.Process(blockStatement, scope));
+        var call = new Func<EsValue, EsValue[], EsValue>((thisContext, _arguments) => _blockStatementProcessor.Value.Process(blockStatement, scope));
 
         return new FunctionValue(call, scope);
     }

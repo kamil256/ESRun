@@ -12,7 +12,7 @@ public class ConsoleObject : ObjectValue
 {
     private static ConsoleObject? _instance;
 
-    private EsValue Log(EsValue[] arguments)
+    private EsValue Log(EsValue thisContext, EsValue[] arguments)
     {
         LoggerHelper.LogInfo(arguments[0] ?? UndefinedValue.Instance);
 
@@ -21,7 +21,7 @@ public class ConsoleObject : ObjectValue
 
     private ConsoleObject()
     {
-        Properties.Add(new StringValue("log"), new DataPropertyDescriptor(new FunctionValue(Log, new Scope())));
+        DefineOwnProperty(new StringValue("log"), new DataPropertyDescriptor(new FunctionValue(Log, new Scope())));
     }
 
     public static ConsoleObject Instance => _instance ??= new ConsoleObject();

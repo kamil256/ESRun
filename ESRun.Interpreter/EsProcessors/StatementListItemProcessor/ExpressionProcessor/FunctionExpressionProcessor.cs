@@ -18,7 +18,7 @@ public class FunctionExpressionProcessor : INodeProcessor<FunctionExpression, Fu
 
     public FunctionValue Process(FunctionExpression node, Scope scope)
     {
-        var call = new Func<EsValue[], EsValue>((_arguments) => _blockStatementProcessor.Value.Process(node.Body, scope));
+        var call = new Func<EsValue, EsValue[], EsValue>((thisContext, _arguments) => _blockStatementProcessor.Value.Process(node.Body, scope));
 
         return new FunctionValue(call, scope);
     }

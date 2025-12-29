@@ -9,7 +9,7 @@ public class GlobalObject : ObjectValue
 
     private GlobalObject()
     {
-        Properties.Add(new StringValue("console"), new DataPropertyDescriptor(ConsoleObject.Instance));
+        DefineOwnProperty(new StringValue("console"), new DataPropertyDescriptor(ConsoleObject.Instance));
     }
 
     public static GlobalObject Instance => _instance ??= new GlobalObject();
