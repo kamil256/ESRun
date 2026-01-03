@@ -1,9 +1,9 @@
 using Esprima.Ast;
+using EsRun.Specification.LanguageTypes.Abstract;
 using ESRun.Interpreter.EsProcessors.Abstract;
 using ESRun.Interpreter.EsScope;
-using ESRun.Interpreter.LanguageTypes;
 
-namespace ESRun.Interpreter.EsProcessors;
+namespace ESRun.Interpreter.EsProcessors.ProgramProcessor;
 
 public class ProgramProcessor : INodeProcessor<Program, EsValue>
 {

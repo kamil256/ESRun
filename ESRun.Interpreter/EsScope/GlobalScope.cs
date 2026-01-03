@@ -1,5 +1,3 @@
-using Esprima.Ast;
-
 namespace ESRun.Interpreter.EsScope;
 
 public class GlobalScope : Scope

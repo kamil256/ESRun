@@ -1,4 +1,4 @@
-using ESRun.Interpreter.LanguageTypes;
+using EsRun.Specification.LanguageTypes.Abstract;
 
 namespace ESRun.Interpreter.Logging;
 

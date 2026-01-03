@@ -1,8 +1,8 @@
 using Esprima;
 using Esprima.Ast;
+using EsRun.Specification.LanguageTypes.Abstract;
 using ESRun.Interpreter.EsProcessors.Abstract;
 using ESRun.Interpreter.EsScope;
-using ESRun.Interpreter.LanguageTypes;
 
 namespace ESRun.GUI;
 

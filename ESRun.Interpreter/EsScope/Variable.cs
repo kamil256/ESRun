@@ -1,5 +1,6 @@
 using Esprima.Ast;
-using ESRun.Interpreter.LanguageTypes;
+using EsRun.Specification.LanguageTypes.Abstract;
+using EsRun.Specification.LanguageTypes.Concrete;
 
 namespace ESRun.Interpreter.EsScope;
 
