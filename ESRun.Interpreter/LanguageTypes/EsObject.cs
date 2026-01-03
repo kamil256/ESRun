@@ -1,4 +1,7 @@
 using ESRun.Interpreter.ObjectBehaviours.InternalMethods;
+using ESRun.Interpreter.ObjectBehaviours.InternalMethods.Abstract;
+using ESRun.Interpreter.ObjectBehaviours.InternalSlots;
+using ESRun.Interpreter.ObjectBehaviours.InternalSlots.Abstract;
 using ESRun.Interpreter.ObjectBehaviours.PropertyStorage;
 
 namespace ESRun.Interpreter.LanguageTypes;
@@ -6,17 +9,27 @@ namespace ESRun.Interpreter.LanguageTypes;
 public class EsObject : EsValue
 {
     public IPropertyStorage Properties { get; private set; }
+    public InternalSlotsStorage InternalSlots { get; private set; }
     public IInternalMethods InternalMethods { get; private set; }
-    public readonly Dictionary<string, EsValue?> InternalSlots = new();
 
-    public EsObject(
+    private EsObject(
         IPropertyStorage properties,
-        IInternalMethods internalMethods,
-        Dictionary<string, EsValue?> internalSlots)
+        InternalSlotsStorage internalSlots,
+        Func<EsObject, IInternalMethods> internalMethodsFactory
+        )
     {
         Properties = properties;
-        InternalMethods = internalMethods;
         InternalSlots = internalSlots;
+        InternalMethods = internalMethodsFactory(this);
+    }
+
+    public static EsObject CreateOrdinary(List<IInternalSlot> internalSlots)
+    {
+        return new EsObject(
+            new OrdinaryPropertyStorage(),
+            new InternalSlotsStorage(internalSlots),
+            esObj => new OrdinaryInternalMethods(esObj)
+        );
     }
 
     // public override EsObject Clone()

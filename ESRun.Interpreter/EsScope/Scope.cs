@@ -1,7 +1,6 @@
 using Esprima.Ast;
 using ESRun.Interpreter.Errors;
-using ESRun.Interpreter.EsTypes.Abstract;
-using ESRun.Interpreter.EsTypes.Undefined;
+using ESRun.Interpreter.LanguageTypes;
 
 namespace ESRun.Interpreter.EsScope;
 
@@ -43,7 +42,7 @@ public class Scope
                 throw new SyntaxError($"redeclaration of {existingVariable.Kind.ToString().ToLower()} {identifier}");
             }
 
-            existingVariable.Value = value ?? UndefinedValue.Instance;
+            existingVariable.Value = value ?? EsUndefined.Instance;
 
             return existingVariable.Value;
         }

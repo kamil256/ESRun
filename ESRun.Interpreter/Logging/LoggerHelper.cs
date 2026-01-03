@@ -1,4 +1,4 @@
-using ESRun.Interpreter.EsTypes.Abstract;
+using ESRun.Interpreter.LanguageTypes;
 
 namespace ESRun.Interpreter.Logging;
 
@@ -13,6 +13,7 @@ public static class LoggerHelper
 
     public static void LogInfo(EsValue value)
     {
-        _logger?.LogInfo(value.ToString(0));
+        throw new NotImplementedException();
+        // _logger?.LogInfo(value.ToString(0));
     }
 }

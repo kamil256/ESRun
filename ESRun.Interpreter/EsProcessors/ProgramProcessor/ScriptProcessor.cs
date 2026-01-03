@@ -1,8 +1,7 @@
 using Esprima.Ast;
 using ESRun.Interpreter.EsProcessors.Abstract;
 using ESRun.Interpreter.EsScope;
-using ESRun.Interpreter.EsTypes.Abstract;
-using ESRun.Interpreter.EsTypes.Undefined;
+using ESRun.Interpreter.LanguageTypes;
 
 namespace ESRun.Interpreter.EsProcessors;
 
@@ -23,6 +22,6 @@ public class ScriptProcessor : INodeProcessor<Script, EsValue>
 
         }
 
-        return UndefinedValue.Instance;
+        return EsUndefined.Instance;
     }
 }

@@ -1,4 +1,4 @@
-using ESRun.Interpreter.EsTypes.Abstract;
+using ESRun.Interpreter.LanguageTypes;
 
 namespace ESRun.Interpreter.SpecificationTypes.CompletionRecord;
 

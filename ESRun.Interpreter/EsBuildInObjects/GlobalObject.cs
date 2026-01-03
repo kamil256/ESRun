@@ -1,16 +1,15 @@
-using ESRun.Interpreter.EsTypes.Object;
-using ESRun.Interpreter.EsTypes.String;
+// using ESRun.Interpreter.LanguageTypes;
 
-namespace ESRun.Interpreter.EsBuildInObjects;
+// namespace ESRun.Interpreter.EsBuildInObjects;
 
-public class GlobalObject : ObjectValue
-{
-    private static GlobalObject? _instance;
+// public class GlobalObject : EsObject
+// {
+//     private static GlobalObject? _instance;
 
-    private GlobalObject()
-    {
-        DefineOwnProperty(new StringValue("console"), new DataPropertyDescriptor(ConsoleObject.Instance));
-    }
+//     private GlobalObject()
+//     {
+//         // DefineOwnProperty(new StringValue("console"), new DataPropertyDescriptor(ConsoleObject.Instance));
+//     }
 
-    public static GlobalObject Instance => _instance ??= new GlobalObject();
-}
+//     public static GlobalObject Instance => _instance ??= new GlobalObject();
+// }

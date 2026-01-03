@@ -68,7 +68,7 @@ public class PropertyDescriptor
 
         var obj = OrdinaryObjectAlgorithms.OrdinaryObjectCreate(FundamentalObjects.ObjectPrototype);
 
-        if (!obj.InternalMethods.IsExtensible() || obj.InternalMethods.OwnPropertyKeys().Length > 0)
+        if (!obj.InternalMethods.IsExtensible() || obj.InternalMethods.OwnPropertyKeys().Count > 0)
         {
             throw new InvalidOperationException("Object must be extensible and have no own properties");
         }

@@ -9,6 +9,11 @@ public class EsList : EsValue
         Items = items;
     }
 
+    public void Add(EsValue item)
+    {
+        Items.Add(item);
+    }
+
     // public override EsValue Clone()
     // {
     //     return new EsList(Items);

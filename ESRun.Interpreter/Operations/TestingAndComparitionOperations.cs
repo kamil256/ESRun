@@ -1,6 +1,7 @@
 using ESRun.Interpreter.LanguageTypes;
 using ESRun.Interpreter.ObjectBehaviours;
 using ESRun.Interpreter.ObjectBehaviours.InternalMethods;
+using ESRun.Interpreter.ObjectBehaviours.InternalSlots.Concrete;
 
 namespace ESRun.Interpreter.Operations;
 
@@ -23,7 +24,7 @@ public static class TestingAndComparitionOperations
 
     public static bool IsExtensible(EsObject o)
     {
-        return o.InternalSlots[InternalSlotNames.Extensible] as EsBoolean == EsBoolean.TrueInstance;
+        return o.InternalSlots.Get<ExtensibleInternalSlot>().Value == true;
     }
 
     public static bool SameType(EsValue x, EsValue y)

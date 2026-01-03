@@ -1,6 +1,5 @@
 using Esprima.Ast;
-using ESRun.Interpreter.EsTypes.Abstract;
-using ESRun.Interpreter.EsTypes.Undefined;
+using ESRun.Interpreter.LanguageTypes;
 
 namespace ESRun.Interpreter.EsScope;
 
@@ -10,7 +9,7 @@ public class Variable
     {
         Identifier = identifier;
         Kind = kind;
-        Value = value ?? UndefinedValue.Instance;
+        Value = value ?? EsUndefined.Instance;
     }
 
     public string Identifier { get; }
