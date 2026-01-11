@@ -43,11 +43,21 @@ public partial class SourceCharacter
 
     public override bool Equals(object? obj)
     {
-        return CodePoint.Equals(obj);
+        return obj is SourceCharacter sourceCharacter && CodePoint.Equals(sourceCharacter.CodePoint);
     }
 
     public override int GetHashCode()
     {
         return CodePoint.GetHashCode();
+    }
+
+    public static bool operator ==(SourceCharacter left, SourceCharacter right)
+    {
+        return left.Equals(right);
+    }
+
+    public static bool operator !=(SourceCharacter left, SourceCharacter right)
+    {
+        return !(left == right);
     }
 }
