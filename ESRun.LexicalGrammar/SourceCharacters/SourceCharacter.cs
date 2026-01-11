@@ -27,7 +27,7 @@ public partial class SourceCharacter
             throw new ArgumentOutOfRangeException(nameof(hexDigits), "Not all source characters are not a hex digits");
         }
 
-        var value = Convert.ToInt32(string.Concat(hexDigits.Select(hd => hd.CodePoint)), 16);
+        int value = Convert.ToInt32(string.Concat(hexDigits.Select(hd => hd.CodePoint)), 16);
         CodePoint = new Rune(value);
     }
 
