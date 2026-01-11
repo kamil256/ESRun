@@ -1,15 +1,16 @@
 {
-  "editor.defaultFormatter": "ms-dotnettools.csharp",
-  "prettier.tabWidth": 4,
+    "editor.defaultFormatter": "ms-dotnettools.csharp",
+    "prettier.tabWidth": 4,
 
-  "editor.tabSize": 4,
-  "editor.insertSpaces": true,
-  "editor.detectIndentation": false,
-
-  "[csharp]": {
     "editor.tabSize": 4,
-    "editor.insertSpaces": true
-  },
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+    "editor.inlineSuggest.enabled": false,
 
-  "vssolution.itemNesting": true
+    "[csharp]": {
+        "editor.tabSize": 4,
+        "editor.insertSpaces": true
+    },
+
+    "vssolution.itemNesting": true
 }
